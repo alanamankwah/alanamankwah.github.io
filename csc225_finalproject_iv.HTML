@@ -11,6 +11,7 @@
         background:black;color:rgb(235, 235, 235);min-height:100vh
     }
         .mnav{
+
             background:black;border-bottom:1px solid rgb(83, 83, 83);
             
             position:fixed;top:0;left:0;right:0;z-index:1000;
@@ -25,7 +26,10 @@
             color:rgb(66, 66, 66);font-size:11px;
             letter-spacing:.2px;
             text-transform:uppercase;
-            margin-left:30px;cursor:pointer;text-decoration:none
+
+            margin-left:30px;
+            cursor:pointer;
+            text-decoration:none
         }
         .category:hover,.category.active{color:white}
         .status-text{
@@ -40,51 +44,73 @@
         .art-card{cursor:pointer;transition:transform .2s}
         
         .art-card:hover{transform:translateY(-6px)}
+
         .art-image{
             width:100%;height:300px;
             object-fit:cover;
             border-radius:4px
         }
-        .art-title,.artist,.loading{font-size:.65rem;letter-spacing:.5px}
+        .art-title,.artist,.loading{
+            font-size:.65rem;
+            letter-spacing:.5px}
         .art-title{margin-top:.75rem;color:rgb(119, 118, 118)}
 
         .artist{color:rgb(198, 198, 198)}
         .loading{text-align:center;padding:4rem 0;color:rgb(185, 185, 185)}
-        .dp{
-            display:none;
-            position:fixed;top:0;left:0;right:0;bottom:0;
-            overflow:hidden;
-            background:black
-        }
-        .dp.active{display:block}
-        .gallery-page.hidden{display:none}
-
         
-        .detail-image{max-width:50vw;max-height:75vh;object-fit:contain}
-        .detail-metadata{
-            position:fixed;top:120px;right:60px;
-            text-align:right;
-            font-size:.65rem;line-height:1.9;
-            
-            letter-spacing:.5px
+       
+        .dp {
+            display:none;
+            position:fixed;
+            top:0; left:0; right:0; bottom:0;
+
+            overflow:auto;
+            background:black;
+
+            padding-top:100px;
+
         }
-        .detail-label{color:rgb(125, 125, 125)}
-        .detailpv{color:rgb(255, 245, 245)}
-        .metlink{
-            display:inline-block;
-            
-            margin-top:1rem;color:rgb(116, 176, 232);
-            text-decoration:none;font-size:.65rem
+        .dp.active { display:block; }
+        .gallery-page.hidden { display:none; }
+
+        .detail-image { 
+            max-width:100%; max-height:75vh; object-fit:contain;
+         }
+
+        .detail-metadata { 
+            font-size:.65rem; line-height:1.6; color:white; 
         }
-        .metlink:hover{color:rgb(135, 212, 227)}
-        .back-button{
-            position:fixed;top:100px;left:40px;z-index:100;
-            background:transparent;border:1px solid #555;color:rgb(233, 233, 233);
-            padding:.5rem 1rem;font-size:.95rem;
-            
-            cursor:pointer
+
+        .detail-label { color:rgb(125,125,125); }
+
+
+        .detailpv { 
+            color:rgb(255,245,245); 
         }
-        .back-button:hover{background:rgb(77, 77, 77);border-color:#888}
+        .metlink { 
+            display:inline-block; 
+            margin-top:0.5rem; 
+
+            color:rgb(116,176,232); 
+            text-decoration:none; 
+            font-size:.65rem; 
+        }
+        .metlink:hover { color:rgb(135,212,227); }
+        .back-button { 
+            background:transparent;
+
+             border:1px solid #555; 
+             color:rgb(233,233,233); 
+             padding:.5rem 1rem; 
+             
+             font-size:.95rem; 
+             cursor:pointer; 
+             margin-bottom:1rem; }
+
+        @media (max-width: 768px) {
+
+            .detail-image { display:block; margin:0 auto 1rem auto; }
+        }
     </style>
 </head>
 <body>
@@ -106,26 +132,33 @@
     <div id="gallery" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4"></div>
     <div id="loading" class="loading">Waiting for Server, artworks will load shortly...</div>
 </div>
-<div class="dp" id="detailPage">
-    <button class="back-button" onclick="goBack()">Back to Gallery</button>
-    <div class="d-flex align-items-center justify-content-center vh-100">
-
-        <img id="detailimg" class="detail-image shadow" src="" alt="">
-    </div>
-    <div class="detail-metadata">
-        <p><span class="detail-label">ARTIST:</span> <span class="detailpv" id="detailArtist"></span></p>
-        <p><span class="detail-label">MEDIUM:</span> <span class="detailpv" id="dm"></span></p>
-        <p><span class="detail-label">TYPE:</span> <span class="detailpv">PAINTING</span></p>
 
 
-        <p><span class="detail-label">NAME:</span> <span class="detailpv" id="detailtitil"></span></p>
-        <p><span class="detail-label">DATE:</span> <span class="detailpv" id="detailDate"></span></p>
-        <a id="metLink" href="" target="_blank" class="metlink">VIEW ON MET</a>
+<div class="dp container-fluid" id="detailPage">
+    <div class="row">
+        <div class="col-12 col-md-3 d-flex flex-column">
+            <button class="back-button" onclick="goBack()">Back to Gallery</button>
+            <div class="detail-metadata mt-2">
+                <p><span class="detail-label">ARTIST:</span> <span class="detailpv" id="detailArtist"></span></p>
+
+                <p><span class="detail-label">MEDIUM:</span> <span class="detailpv" id="dm"></span></p>
+
+                <p><span class="detail-label">TYPE:</span> <span class="detailpv">PAINTING</span></p>
+                <p><span class="detail-label">NAME:</span> <span class="detailpv" id="detailtitil"></span></p>
+                <p><span class="detail-label">DATE:</span> <span class="detailpv" id="detailDate"></span></p>
+
+                <a id="metLink" href="" target="_blank" class="metlink">VIEW ON MET</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 d-flex justify-content-center align-items-center">
+
+            <img id="detailimg" class="detail-image shadow" src="" alt="">
+        </div>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    
     var gallery = document.getElementById('gallery')
     var loading = document.getElementById('loading');
 
@@ -159,7 +192,7 @@
         time.innerHTML = '<span class="status-text">MET is OPEN</span>'
     } 
     else {
-        time.innerHTML = '<span class="status-text">MET is CLOSED now, opens tmr at 10am</span>';
+        time.innerHTML = '<span class="status-text">opens tmr at 10am</span>';
     }
     //(gotta add) `imma add holidyyss, later 
     
@@ -169,7 +202,8 @@
         });
     }
     function loadArtworks(category) {
-        currentLoadId++;
+        currentLoadId++
+
         var thisLoadId = currentLoadId;
         
         gallery.innerHTML = '';
@@ -190,6 +224,7 @@
         } else {
             departmentId = '1';
             categoryName = 'American Paintings';
+
             links[1].classList.add('active')
             links[0].classList.remove('active');
         }
@@ -233,7 +268,7 @@
                     img.src = obj.primaryImageSmall;
 
                     img.className = 'art-image'
-                    var title = document.createElement('div');
+                    var title = document.createElement('div')
                     title.className = 'art-title';
 
                     title.textContent = obj.title || 'Untitled';
@@ -270,6 +305,7 @@
         document.getElementById('detailtitil').textContent = 'Loading...'
 
         document.getElementById('detailArtist').textContent = ''
+
         document.getElementById('detailDate').textContent = '';
 
         document.getElementById('dm').textContent = '';
